@@ -14,6 +14,7 @@ const authFormSchema = z.object({
 
 export interface LoginActionState {
   status: "idle" | "in_progress" | "success" | "failed" | "invalid_data";
+  redirectTo?: string;
 }
 
 export const login = async (
@@ -36,11 +37,11 @@ export const login = async (
       return { status: "failed" };
     }
 
-    // Redirect to home page after successful login
-    redirect("/");
-
-    // This will only run if redirect() doesn't work
-    return { status: "success" };
+    // Return success with redirect info instead of using the redirect() function directly
+    return {
+      status: "success",
+      redirectTo: "/",
+    };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return { status: "invalid_data" };
@@ -58,6 +59,7 @@ export interface RegisterActionState {
     | "failed"
     | "user_exists"
     | "invalid_data";
+  redirectTo?: string;
 }
 
 export const register = async (
@@ -82,7 +84,10 @@ export const register = async (
         redirect: false,
       });
 
-      return { status: "success" };
+      return {
+        status: "success",
+        redirectTo: "/",
+      };
     }
   } catch (error) {
     if (error instanceof z.ZodError) {

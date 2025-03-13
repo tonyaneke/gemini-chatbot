@@ -18,7 +18,7 @@ export default function Page() {
     register,
     {
       status: "idle",
-    },
+    }
   );
 
   useEffect(() => {
@@ -30,9 +30,17 @@ export default function Page() {
       toast.error("Failed validating your submission!");
     } else if (state.status === "success") {
       toast.success("Account created successfully");
-      router.refresh();
+
+      // Navigate to the redirectTo path if provided
+      if (state.redirectTo) {
+        setTimeout(() => {
+          router.push(state.redirectTo!);
+        }, 500); // Give time for toast to be seen
+      } else {
+        router.refresh();
+      }
     }
-  }, [state, router]);
+  }, [state.status, router, state.redirectTo]);
 
   const handleSubmit = (formData: FormData) => {
     setEmail(formData.get("email") as string);

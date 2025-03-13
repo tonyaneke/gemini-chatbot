@@ -19,7 +19,7 @@ export default function Page() {
     login,
     {
       status: "idle",
-    },
+    }
   );
 
   useEffect(() => {
@@ -28,9 +28,18 @@ export default function Page() {
     } else if (state.status === "invalid_data") {
       toast.error("Failed validating your submission!");
     } else if (state.status === "success") {
-      router.refresh();
+      toast.success("Login successful!");
+
+      // Navigate to the redirectTo path if provided
+      if (state.redirectTo) {
+        setTimeout(() => {
+          router.push(state.redirectTo!);
+        }, 500); // Give time for toast to be seen
+      } else {
+        router.refresh();
+      }
     }
-  }, [state.status, router]);
+  }, [state.status, router, state.redirectTo]);
 
   const handleSubmit = (formData: FormData) => {
     setEmail(formData.get("email") as string);
