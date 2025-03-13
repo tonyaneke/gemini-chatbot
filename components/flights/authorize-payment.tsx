@@ -17,7 +17,7 @@ export function AuthorizePayment({
 }) {
   const { data: reservation, mutate } = useSWR(
     `/api/reservation?id=${intent.reservationId}`,
-    fetcher,
+    fetcher
   );
 
   const [input, setInput] = useState("");
@@ -32,7 +32,7 @@ export function AuthorizePayment({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ magicWord }),
-        },
+        }
       );
 
       if (!response.ok) {
@@ -74,7 +74,8 @@ export function AuthorizePayment({
         Use your saved information for this transaction
       </div>
       <div className="text-muted-foreground text-sm sm:text-base">
-        Enter the magic word to authorize payment. Hint: It rhymes with bercel.
+        Enter the magic word to authorize payment. Hint: Name of creator of this
+        app.
       </div>
 
       <Input

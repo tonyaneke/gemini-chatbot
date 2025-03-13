@@ -20,28 +20,21 @@ export const Overview = () => {
           <MessageIcon />
         </p>
         <p>
-          This is an open source Chatbot template powered by the Google Gemini
-          model built with Next.js and the AI SDK by Vercel. It uses the{" "}
-          <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
-            streamText
-          </code>{" "}
-          function in the server and the{" "}
-          <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
-            useChat
-          </code>{" "}
-          hook on the client to create a seamless chat experience.
+          Meet your AI Travel Assistant, powered by Google Gemini technology.
+          This intelligent booking agent helps you plan and book your perfect
+          trip with ease. Simply chat with the assistant about your travel
+          preferences, and it will handle all your booking needs.
+        </p>
+        <p>
+          Our travel assistant can search for flights, find accommodations,
+          recommend activities, and complete your reservations—all in one
+          conversational interface. Just tell it where you want to go, when
+          you're traveling, and what you're looking for.
         </p>
         <p>
           {" "}
-          You can learn more about the AI SDK by visiting the{" "}
-          <Link
-            className="text-blue-500 dark:text-blue-400"
-            href="https://sdk.vercel.ai/docs"
-            target="_blank"
-          >
-            Docs
-          </Link>
-          .
+          Start your journey by simply typing your travel plans or questions in
+          the chat below.
         </p>
       </div>
     </motion.div>
