@@ -1,7 +1,8 @@
 "use server";
 
-import { z } from "zod";
 import { redirect } from "next/navigation";
+import { z } from "zod";
+
 import { createUser, getUser } from "@/db/queries";
 
 import { signIn } from "./auth";
