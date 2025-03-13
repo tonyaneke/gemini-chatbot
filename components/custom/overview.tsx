@@ -29,7 +29,7 @@ export const Overview = () => {
           Our travel assistant can search for flights, find accommodations,
           recommend activities, and complete your reservations—all in one
           conversational interface. Just tell it where you want to go, when
-          you're traveling, and what you're looking for.
+          you&apos;re traveling, and what you&apos;re looking for.
         </p>
         <p>
           {" "}
