@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-
+import { redirect } from "next/navigation";
 import { createUser, getUser } from "@/db/queries";
 
 import { signIn } from "./auth";
@@ -17,7 +17,7 @@ export interface LoginActionState {
 
 export const login = async (
   _: LoginActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<LoginActionState> => {
   try {
     const validatedData = authFormSchema.parse({
@@ -25,12 +25,20 @@ export const login = async (
       password: formData.get("password"),
     });
 
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       email: validatedData.email,
       password: validatedData.password,
       redirect: false,
     });
 
+    if (result?.error) {
+      return { status: "failed" };
+    }
+
+    // Redirect to home page after successful login
+    redirect("/");
+
+    // This will only run if redirect() doesn't work
     return { status: "success" };
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -53,7 +61,7 @@ export interface RegisterActionState {
 
 export const register = async (
   _: RegisterActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<RegisterActionState> => {
   try {
     const validatedData = authFormSchema.parse({
